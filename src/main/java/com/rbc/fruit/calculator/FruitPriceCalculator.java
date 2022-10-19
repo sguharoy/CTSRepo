@@ -11,11 +11,15 @@ import java.util.stream.Collectors;
 public class FruitPriceCalculator {
 
 
-    public double getTotalCost(final FruitInventory fruitInventory, final FruitItemPriceProvider fruitItemPriceProvider) {
-        System.out.println("Using the predefined prices for each fruit item");
-        return fruitInventory.getAllFruits().entrySet().stream().collect(Collectors.reducing(0.0, (entry) -> {
-            return fruitItemPriceProvider.getPriceForFruit(entry.getKey()) * entry.getValue();
-        }, Double::sum));
+  public double getTotalCost(final FruitInventory fruitInventory, final FruitItemPriceProvider fruitItemPriceProvider) {
+        if (Objects.nonNull(fruitInventory) && Objects.nonNull(fruitItemPriceProvider)) {
+            System.out.println("Using the predefined prices for each fruit item");
+            return fruitInventory.getAllFruits().entrySet().stream().collect(Collectors.reducing(0.0, (entry) -> {
+                return fruitItemPriceProvider.getPriceForFruit(entry.getKey()) * entry.getValue();
+            }, Double::sum));
+        } else {
+            throw new FruitCalculatorExcp("FruitInventory and FruitItemPriceProvider can't be null");
+        }
 
 
     }
