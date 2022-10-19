@@ -1,0 +1,11 @@
+package com.rbc.fruit.calculator.excp;
+
+public class FruitCalculatorExcp extends RuntimeException {
+
+    public FruitCalculatorExcp() {
+
+    }
+    public FruitCalculatorExcp(final String message) {
+        super(message);
+    }
+}
