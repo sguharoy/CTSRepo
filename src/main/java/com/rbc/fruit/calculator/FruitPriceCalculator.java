@@ -2,6 +2,7 @@ package com.rbc.fruit.calculator;
 
 import com.rbc.fruit.calculator.inventory.FruitInventory;
 import com.rbc.fruit.calculator.provider.FruitItemPriceProvider;
+import java.util.stream.Collectors;
 
 
 /**
@@ -9,17 +10,13 @@ import com.rbc.fruit.calculator.provider.FruitItemPriceProvider;
  */
 public class FruitPriceCalculator {
 
-    private double total = 0.0;
-
 
     public double getTotalCost(final FruitInventory fruitInventory, final FruitItemPriceProvider fruitItemPriceProvider) {
         System.out.println("Using the predefined prices for each fruit item");
-        fruitInventory.getAllFruits().entrySet().forEach(entry -> {
-            total += fruitItemPriceProvider.getPriceForFruit(entry.getKey()) * entry.getValue();
-            System.out.println(String.format("%s: $%.2f (%d items)", entry.getKey(), fruitItemPriceProvider.getPriceForFruit(entry.getKey()),
-                    entry.getValue()));
-        });
-        return total;
+        return fruitInventory.getAllFruits().entrySet().stream().collect(Collectors.reducing(0.0, (entry) -> {
+            return fruitItemPriceProvider.getPriceForFruit(entry.getKey()) * entry.getValue();
+        }, Double::sum));
+
 
     }
 }
