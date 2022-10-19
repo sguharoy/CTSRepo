@@ -41,4 +41,13 @@ public class FruitPriceCalculatorDriverTest {
         final FruitPriceCalculator fruitPriceCalculatorDriver=new FruitPriceCalculator();
        fruitPriceCalculatorDriver.getTotalCost(fruitInventory,fipp);
     }
+     @Test(expected = FruitCalculatorExcp.class)
+    public void getTotalCostNullTest() {
+        final FruitPriceCalculator fruitPriceCalculatorDriver=new FruitPriceCalculator();
+        fruitPriceCalculatorDriver.getTotalCost(null,null);
+
+    }
+    
+    
+    
 }
