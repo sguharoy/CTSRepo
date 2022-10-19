@@ -1,6 +1,6 @@
 package com.rbc.fruit.calculator;
 
-import com.rbc.fruit.calculator.driver.FruitPriceCalculatorDriver;
+
 import com.rbc.fruit.calculator.excp.FruitPriceNotFoundExcp;
 import com.rbc.fruit.calculator.inventory.FruitInventory;
 import com.rbc.fruit.calculator.provider.FruitItemPriceProvider;
@@ -23,7 +23,7 @@ public class FruitPriceCalculatorDriverTest {
                 put("Apples", 20.75);
             }
         });
-        final FruitPriceCalculatorDriver fruitPriceCalculatorDriver=new FruitPriceCalculatorDriver();
+        final FruitPriceCalculator fruitPriceCalculatorDriver=new FruitPriceCalculator();
         final double totalPrice=fruitPriceCalculatorDriver.getTotalCost(fruitInventory,fipp);
         assertTrue(Double.compare(58.75, totalPrice) == 0);
     }
@@ -38,7 +38,7 @@ public class FruitPriceCalculatorDriverTest {
                 put("Peanuts", 20.75);
             }
         });
-        final FruitPriceCalculatorDriver fruitPriceCalculatorDriver=new FruitPriceCalculatorDriver();
+        final FruitPriceCalculator fruitPriceCalculatorDriver=new FruitPriceCalculator();
        fruitPriceCalculatorDriver.getTotalCost(fruitInventory,fipp);
     }
 }
